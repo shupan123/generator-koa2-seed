@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<section>
+    <h3>{{message}}</h3>
+    <a href="/">首页</a>
+    <a href="/aws/table/create">创建零食表</a>
+    <a href="/aws/table/remove">删除零食表</a>
+    |
+    <a href="/aws/add">添加零食</a>
+    <a href="/aws/batch">批量添加零食</a>
+    <a href="/aws/list/1">列出零食清单</a>
+</section>
+{% if snacks.Items.length > 0 %}
+<section>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>名称</th>
+            <th>数量</th>
+            <th>存储方式</th>
+            <th>操作</th>
+        </tr>
+        {% for item in snacks.Items %}
+        <tr>
+            <td>{{item.SnackId}}</td>
+            <td>{{item.SnackName}}</td>
+            <td>{{item.Count}}</td>
+            <td>{{item.Storage.join(', ')}}</td>
+            <td>
+                <a href="/aws/update/{{item.SnackId}}/{{item.SnackName}}">更新</a>
+                |
+                <a href="/aws/remove/{{item.SnackId}}/{{item.SnackName}}">删除</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+<section>
+    {% if not first %}
+        <a href="/aws/list/{{parseInt(page) - 1}}">上一页</a>
+    {% endif %}
+
+    {% if not first and not last %}
+        |
+    {% endif %}
+
+    {% if not last %}
+        <a href="/aws/list/{{parseInt(page) + 1}}">下一页</a>
+    {% endif %}
+</section>
+<section>
+    总数： {{items.Count}}
+</section>
+{% endif %}
+
+{% endblock %}

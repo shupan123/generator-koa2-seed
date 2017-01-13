@@ -1,0 +1,8 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{name}}{{version | formatVersion}}{% endblock %}
+
+{% block content %}
+<h3>Hi <span>{{author.name}}</span> | <a href="mailto:{{author.email}}">{{author.email}}</a></h3>
+<p>Go to <a href="/aws">AWS DEMO</a></p>
+{% endblock %}
