@@ -1,8 +1,12 @@
 # generator-koa2-seed
 
----
-
-## Run Command
+## Install 
 ```
-npm install -g yo generator-koa2-seed
+$ npm install -g yo generator-koa2-seed 
+$ yo koa2-seed
+```
+
+## Start
+```
+$ npm start
 ```
